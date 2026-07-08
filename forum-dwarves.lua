@@ -28,7 +28,7 @@ safe to attempt running the script with any screen active, with an
 error message to inform you when the selected screen is not appropriate
 for this script.
 
-The target file's name is 'forumdwarves.txt'.  A reminder to this effect
+The target file's name is 'exports/forumdwarves.txt'.  A reminder to this effect
 will be displayed if the script is successful.
 
 .. note::
@@ -109,7 +109,7 @@ if flerb == 'textviewer' then
  local line = ""
 
  if lines ~= nil then
-  local log = io.open('forumdwarves.txt', 'a')
+  local log = io.open('exports/forumdwarves.txt', 'a')
   log:write("[color=silver]")
   log:write(scrn.title)
   for n,x in ipairs(lines) do
@@ -125,7 +125,7 @@ if flerb == 'textviewer' then
  log:write("[/color]\n")
  log:close()
  end
- print 'data prepared for forum in \"forumdwarves.txt\"'
+ print 'data prepared for forum in \"exports/forumdwarves.txt\"'
 else
  print 'this is not a textview screen'
 end

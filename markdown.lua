@@ -25,8 +25,8 @@ Usage::
 
 :-n:    overwrites contents of output file
 :filename:
-        if provided, save to :file:`md_{filename}.md` instead
-        of the default :file:`md_export.md`
+        if provided, save to :file:`exports/md_{filename}.md` instead
+        of the default :file:`exports/md_export.md`
 
 The screens which have been tested and known to function properly with
 this script are:
@@ -64,9 +64,9 @@ end
 local filename
 
 if args[1] ~= nil then
-    filename = 'md_' .. table.remove(args, 1) .. '.md'
+    filename = 'exports/md_' .. table.remove(args, 1) .. '.md'
 else
-    filename = 'md_export.md'
+    filename = 'exports/md_export.md'
 end
 
 local utils = require 'utils'

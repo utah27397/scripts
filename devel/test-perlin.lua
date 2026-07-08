@@ -15,6 +15,9 @@ if #args < 3 then
 end
 
 local fname = table.remove(args,1)
+if not fname:find('/') then
+    fname = 'exports/' .. fname
+end
 local goal = tonumber(table.remove(args,1)) or qerror('Invalid density')
 local expr = table.remove(args,1) or qerror('No expression')
 local zscale = 2

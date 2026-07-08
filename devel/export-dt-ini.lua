@@ -474,7 +474,7 @@ address('setupdwarfgame_units',df.viewscreen_setupdwarfgamest,'units')
 
 -- Final creation of the file
 
-local out = io.open('therapist.ini', 'w')
+local out = io.open('exports/therapist.ini', 'w')
 
 out:write('[info]\n')
 if dfhack.getOSType() == 'windows' and dfhack.internal.getPE then

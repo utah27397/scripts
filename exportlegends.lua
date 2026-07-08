@@ -23,25 +23,26 @@ Valid values for ``OPTION`` are:
 :all:    Equivalent to calling all of the above, in that order
 
 ``FOLDER_NAME``, if specified, is the name of the folder where all the files
-will be saved. This defaults to the ``legends-regionX-YYYYY-MM-DD`` format. A path is
-also allowed, although everything but the last folder has to exist. To export
-to the top-level DF folder, pass ``.`` for this argument.
+will be saved. This defaults to the ``exports/legends-regionX-YYYYY-MM-DD``
+format. Relative paths are written under ``exports`` unless they already start
+with ``exports/``. To export to the exports folder itself, pass ``.`` for this
+argument.
 
 Examples:
 
-* Export all information to the ``legends-regionX-YYYYY-MM-DD`` folder::
+* Export all information to the ``exports/legends-regionX-YYYYY-MM-DD`` folder::
 
     exportlegends all
 
-* Export all information to the ``region6`` folder::
+* Export all information to the ``exports/region6`` folder::
 
     exportlegends all region6
 
-* Export just the files included in ``info`` (above) to the ``legends-regionX-YYYYY-MM-DD`` folder::
+* Export just the files included in ``info`` (above) to the ``exports/legends-regionX-YYYYY-MM-DD`` folder::
 
     exportlegends info
 
-* Export just the custom XML file to the DF folder (no subfolder)::
+* Export just the custom XML file to the exports folder (no subfolder)::
 
     exportlegends custom .
 
@@ -91,8 +92,8 @@ function move_back_to_main_folder()
     return dfhack.filesystem.restore_cwd()
 end
 
--- Set default folder name
-local folder_name = "legends-" .. df.global.world.cur_savegame.save_dir .. "-" .. get_world_date_str()
+-- Set default folder name under the persistent exports directory
+local folder_name = "exports/legends-" .. df.global.world.cur_savegame.save_dir .. "-" .. get_world_date_str()
 -- Go to save folder, returns true if successfully
 function move_to_save_folder()
     if move_back_to_main_folder() then
@@ -1171,9 +1172,22 @@ function create_folder(folder_name)
     end
 end
 
+function normalize_export_folder(name)
+    if name == "." then
+        return "exports"
+    end
+    if name:sub(1, 1) == "/" then
+        return name
+    end
+    if name == "exports" or name:sub(1, 8) == "exports/" then
+        return name
+    end
+    return "exports/" .. name
+end
+
 -- If folder_name is given as a argument use that
 if #args >= 2 then
-    folder_name = args[2]
+    folder_name = normalize_export_folder(args[2])
 end
 -- Create folder to export all files into, if possible.
 if not create_folder(folder_name) then

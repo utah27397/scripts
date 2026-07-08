@@ -1,18 +1,19 @@
--- Log installation info to install-info.txt
+-- Log installation info to exports/install-info.txt
 
 --[====[
 
 install-info
 ============
 
-Saves information about the current DFHack installation to ``install-info.txt``
-in the current DF folder. Useful for bug reports.
+Saves information about the current DFHack installation to
+``exports/install-info.txt``. Useful for bug reports.
 
 ]====]
 
 local utils = require 'utils'
 
-local f = io.open(dfhack.getDFPath() .. '/install-info.txt', 'w')
+local output_path = dfhack.getDFPath() .. '/exports/install-info.txt'
+local f = io.open(output_path, 'w')
 function log(...)
     local text = table.concat({...}, '')
     if not f then
@@ -67,8 +68,8 @@ end) then
 end
 
 if not f then
-    qerror('Could not write to install-info.txt.\nCopy the above text instead.')
+    qerror('Could not write to exports/install-info.txt.\nCopy the above text instead.')
 else
     f:close()
-    print('Saved to:\n' .. dfhack.getDFPath() .. '/install-info.txt')
+    print('Saved to:\n' .. output_path)
 end

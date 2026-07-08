@@ -19,7 +19,7 @@ Use one or more of the following options:
 :wildanimals:           Show wild animals
 :hostile:               Show hostiles (e.g. invaders, thieves, forgotten beasts etc)
 :world:                 Show all defined syndromes in the world
-:export:                ``export:<filename>`` sends output to the given file, showing all
+:export:                ``export:<filename>`` sends output to ``exports/<filename>.html``, showing all
                         syndromes affecting each unit with the maximum and present duration.
 
 =end
@@ -46,7 +46,7 @@ def print_help()
   puts "    wildanimals: Show wild animals"
   puts "    hostile: Show hostiles (e.g. invaders, thieves, forgotten beasts etc)"
   puts "    world: Show all defined syndromes in the world"
-  puts "    export:<filename> Write the output to a file instead of the console."
+  puts "    export:<filename> Write the output to exports/<filename>.html instead of the console."
   puts ""
   puts "Will show all syndromes affecting each units with the maximum and present duration."
 end
@@ -59,7 +59,7 @@ class Output
     if filename==nil
       @fileLogger = nil
     else
-      @fileLogger = File.new(filename + ".html", "w")
+      @fileLogger = File.new("exports/" + filename + ".html", "w")
       @fileLogger.puts("<html><body>")
     end
   end
