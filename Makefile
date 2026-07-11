@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := build
 
-SOURCE_COMMIT := 8d0d0331487da879e25e4f4530ddf761cf4310eb
+SOURCE_BASIS_COMMIT := 8d0d0331487da879e25e4f4530ddf761cf4310eb
 TARGET_DFHACK := 0.47.05-r8
 MANIFEST ?= manifests/backport-scripts.txt
 BUILD_DIR ?= build
@@ -27,8 +27,10 @@ check-source:
 
 source-info: check-source
 	@set -eu; \
+	backport_commit=$$(git rev-parse HEAD 2>/dev/null || echo unknown); \
 	echo "source branch:    scripts-backport/0.47.05-r8"; \
-	echo "source commit:    $(SOURCE_COMMIT)"; \
+	echo "backport commit:  $$backport_commit"; \
+	echo "source basis:     $(SOURCE_BASIS_COMMIT)"; \
 	echo "target dfhack:    $(TARGET_DFHACK)"; \
 	echo "selected scripts: $$(awk 'NF && $$1 !~ /^#/' "$(MANIFEST)" | wc -l)"
 
