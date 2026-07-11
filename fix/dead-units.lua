@@ -45,7 +45,7 @@ local function scrub_active()
 end
 
 local function scrub_burrows()
-    for _, burrow in ipairs(df.global.plotinfo.burrows.list) do
+    for _, burrow in ipairs(df.global.ui.burrows.list) do
         local units_to_remove = {}
         for _, unit_id in ipairs(burrow.units) do
             local unit = df.unit.find(unit_id)

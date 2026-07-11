@@ -74,7 +74,7 @@ end
 -- assign first free minecart to the most recently-created route
 -- returns assigned minecart (or nil if assignment failed)
 function assign_minecart_to_last_route(quiet)
-    local routes = df.global.plotinfo.hauling.routes
+    local routes = df.global.ui.hauling.routes
     local route_idx = #routes - 1
     if route_idx < 0 then
         return false
@@ -84,7 +84,7 @@ function assign_minecart_to_last_route(quiet)
 end
 
 local function get_route_by_id(route_id)
-    for _,route in ipairs(df.global.plotinfo.hauling.routes) do
+    for _,route in ipairs(df.global.ui.hauling.routes) do
         if route.id == route_id then
             return route
         end
@@ -92,7 +92,7 @@ local function get_route_by_id(route_id)
 end
 
 local function list()
-    local routes = df.global.plotinfo.hauling.routes
+    local routes = df.global.ui.hauling.routes
     if 0 == #routes then
         print('No hauling routes defined.')
     else
@@ -115,7 +115,7 @@ end
 
 local function all(quiet)
     local minecarts, idx = get_free_vehicles(), 1
-    local routes = df.global.plotinfo.hauling.routes
+    local routes = df.global.ui.hauling.routes
     for _,route in ipairs(routes) do
         if get_minecart(route) then
             goto continue
