@@ -8,8 +8,10 @@ gui/autobutcher-breeder
 
 This is an in-game interface for `autobutcher-breeder`, which allows you to set
 female/male and juvenile/adult population targets. When a target is exceeded,
-the plugin retains sexually compatible animals with the highest minimum
-physical attribute potential and marks lower-scoring animals for slaughter.
+the plugin retains sexually compatible animals by comparing physical attribute
+potential from weakest to strongest and marks lower-ranked animals for
+slaughter. Fully tied juveniles are culled youngest-first, and fully tied
+adults are culled oldest-first.
 Unprotected animals without confirmed opposite-sex interest are marked for
 slaughter regardless of the configured target.
 
