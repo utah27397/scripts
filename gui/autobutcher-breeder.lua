@@ -247,10 +247,14 @@ function WatchList:initListChoices()
         fa_pen = good_pen
         mk_pen = good_pen
         ma_pen = good_pen
-        if entry.fk_protected > entry.fk then fk_pen = bad_pen end
-        if entry.fa_protected > entry.fa then fa_pen = bad_pen end
-        if entry.mk_protected > entry.mk then mk_pen = bad_pen end
-        if entry.ma_protected > entry.ma then ma_pen = bad_pen end
+        local fk_quota_protected = entry.fk_protected_eligible or entry.fk_protected
+        local fa_quota_protected = entry.fa_protected_eligible or entry.fa_protected
+        local mk_quota_protected = entry.mk_protected_eligible or entry.mk_protected
+        local ma_quota_protected = entry.ma_protected_eligible or entry.ma_protected
+        if fk_quota_protected > entry.fk then fk_pen = bad_pen end
+        if fa_quota_protected > entry.fa then fa_pen = bad_pen end
+        if mk_quota_protected > entry.mk then mk_pen = bad_pen end
+        if ma_quota_protected > entry.ma then ma_pen = bad_pen end
 
         table.insert (choices, {
             text = {
