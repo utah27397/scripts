@@ -48,7 +48,31 @@ function setSleepTimer(ticks)
     plugin.autobutcher_setSleep(ticks)
 end
 
+local function addCurrentRaces()
+    local known_races = {}
+    for _, entry in ipairs(plugin.autobutcher_getWatchList()) do
+        known_races[entry.id] = true
+    end
+
+    local settings = plugin.autobutcher_getSettings()
+    for _, unit in ipairs(df.global.world.units.all) do
+        if not known_races[unit.race]
+                and dfhack.units.isActive(unit)
+                and not dfhack.units.isUndead(unit)
+                and not dfhack.units.isMerchant(unit)
+                and not dfhack.units.isForest(unit)
+                and dfhack.units.isOwnCiv(unit)
+                and dfhack.units.isTame(unit) then
+            plugin.autobutcher_setWatchListRace(
+                unit.race, settings.fk, settings.mk,
+                settings.fa, settings.ma, false)
+            known_races[unit.race] = true
+        end
+    end
+end
+
 function WatchList:init(args)
+    addCurrentRaces()
     local colwidth = 7
     self:addviews{
         widgets.Panel{
