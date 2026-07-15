@@ -127,10 +127,11 @@ function SuspendOverlay:refresh_screen_buildings()
     local screen_buildings, z = {}, viewport.z
     for bld_id,data in pairs(self.in_progress_buildings) do
         local bld = df.building.find(bld_id)
-        local pos = {x=bld.centerx, y=bld.centery, z=bld.z}
-        if bld and viewport:isVisible(pos) then
-            local screen_pos = viewport:tileToScreen(pos)
-            screen_buildings[bld_id] = screen_pos
+        if bld then
+            local pos = {x=bld.centerx, y=bld.centery, z=bld.z}
+            if viewport:isVisible(pos) then
+                screen_buildings[bld_id] = viewport:tileToScreen(pos)
+            end
         end
     end
     self.screen_buildings = screen_buildings
