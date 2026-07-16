@@ -12,8 +12,9 @@ the plugin retains sexually compatible animals by comparing physical attribute
 potential from weakest to strongest and marks lower-ranked animals for
 slaughter. Fully tied juveniles are culled youngest-first, and fully tied
 adults are culled oldest-first.
-Unprotected animals without confirmed opposite-sex interest are marked for
-slaughter regardless of the configured target.
+Unprotected animals without confirmed opposite-sex interest count toward the
+configured target and receive first priority for slaughter when it is
+exceeded.
 
 Usage
 -----
