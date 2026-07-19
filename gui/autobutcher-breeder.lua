@@ -264,33 +264,17 @@ function WatchList:initListChoices()
 
         local racestr = entry.name
 
-        -- highlight entries where the target quota can't be met because too many are protected
-        bad_pen = COLOR_LIGHTRED
-        good_pen = NONE -- this is stupid, but it works. sue me
-        fk_pen = good_pen
-        fa_pen = good_pen
-        mk_pen = good_pen
-        ma_pen = good_pen
-        local fk_quota_protected = entry.fk_protected_eligible or entry.fk_protected
-        local fa_quota_protected = entry.fa_protected_eligible or entry.fa_protected
-        local mk_quota_protected = entry.mk_protected_eligible or entry.mk_protected
-        local ma_quota_protected = entry.ma_protected_eligible or entry.ma_protected
-        if fk_quota_protected > entry.fk then fk_pen = bad_pen end
-        if fa_quota_protected > entry.fa then fa_pen = bad_pen end
-        if mk_quota_protected > entry.mk then mk_pen = bad_pen end
-        if ma_quota_protected > entry.ma then ma_pen = bad_pen end
-
         table.insert (choices, {
             text = {
                 { text = racestr, width = racewidth, pad_char = ' ' }, --' ',
                 { text = fkc, width = 3, rjustify = true,  pad_char = ' ' }, '/',
-                { text = fk,  width = 3, rjustify = false, pad_char = ' ', pen = fk_pen }, ' ',
+                { text = fk,  width = 3, rjustify = false, pad_char = ' ' }, ' ',
                 { text = mkc, width = 3, rjustify = true,  pad_char = ' ' }, '/',
-                { text = mk,  width = 3, rjustify = false, pad_char = ' ', pen = mk_pen }, ' ',
+                { text = mk,  width = 3, rjustify = false, pad_char = ' ' }, ' ',
                 { text = fac, width = 3, rjustify = true,  pad_char = ' ' }, '/',
-                { text = fa,  width = 3, rjustify = false, pad_char = ' ', pen = fa_pen }, ' ',
+                { text = fa,  width = 3, rjustify = false, pad_char = ' ' }, ' ',
                 { text = mac, width = 3, rjustify = true,  pad_char = ' ' }, '/',
-                { text = ma,  width = 3, rjustify = false, pad_char = ' ', pen = ma_pen }, ' ',
+                { text = ma,  width = 3, rjustify = false, pad_char = ' ' }, ' ',
                 { text = watched, width = 6, rjustify = true, pad_char = ' ' }, ' ',
                 { text = bo,  width = 8, rjustify = true, pad_char = ' ' }
             },
